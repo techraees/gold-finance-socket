@@ -1,18 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <>
-      <section className="container">
+      <section className="">
+        <div class="header-top-marquee">
+          <marquee class="marquee1"></marquee>
+        </div>
         <div class="menu-cover menu-first">
           <div class="container">
             <div class="col-sm-4 col-md-4 res">
-              <a
-                class="navbar-brand"
-                href="https://bullion.safegold.in/index.html"
-              >
+              <Link to="/" className="navbar-brand">
                 <img src="/logo.svg" alt="" />
-              </a>
+              </Link>
             </div>
             <div class="col-sm-4 col-md-4 oneres">
               <div class="booking-number">
@@ -27,13 +28,10 @@ const Navbar = () => {
             </div>
             <div class="col-sm-4 col-md-4 oneres">
               <div class="login-btn">
-                <a
-                  class="login-btn-cvr"
-                  href="https://bullion.safegold.in/Terminal/Login.html"
-                  target="_blank"
-                >
+                <Link className="login-btn-cvr" to="/login" target="_blank">
+                  {" "}
                   Login / sign up
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -59,12 +57,9 @@ const Navbar = () => {
               <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto ">
                   <li class="nav-item pgabout">
-                    <a
-                      class="nav-link"
-                      href="https://bullion.safegold.in/about.html"
-                    >
+                    <Link to="/about" className="nav-link">
                       About Us
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item pgliverate">
                     <a

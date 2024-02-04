@@ -263,10 +263,6 @@ body:after{position: fixed;
     background: #00bbb4;
     border-radius: 5px;
 }
-.header-home {
-    background: #00bbb4;
-    border-radius: 5px;
-}
 .product-title.prate tr td {
     font-size: 22px;
     padding: 0px;
