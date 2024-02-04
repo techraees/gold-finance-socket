@@ -16,6 +16,7 @@ import Footer from "./components/common/Footer";
 import "/public/css/otr.css";
 import "/public/css/style.css";
 import "/public/css/style(1).css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   const [routes, setRoutes] = useState([
