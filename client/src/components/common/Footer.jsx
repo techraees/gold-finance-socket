@@ -1,4 +1,4 @@
-import React from "react";
+import './Footer.css'
 
 const Footer = () => {
   return (
@@ -6,11 +6,7 @@ const Footer = () => {
       <div id="ftr">
         <footer>
           <div class="container">
-            <img
-              className="container-fluid "
-              src="/Screenshot 2024-02-05 at 3.08.09 AM.png"
-              alt=""
-            />
+            <div className="biglineBeforeFooter"></div>
             <div class="footer-top">
               <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-12">

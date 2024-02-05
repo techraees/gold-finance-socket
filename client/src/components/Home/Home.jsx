@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -129,10 +130,13 @@ const Home = () => {
               </div>
             </div>
             <div className="main-product-cover">
-              <div className="product-title header " id="divHeader">
+              <div
+                className="product-title header tablePriceBuySell"
+                id="divHeader"
+              >
                 <table className="table">
-                  <tbody>
-                    <tr style={{ backgroundColor: "#00bbb4" }}>
+                  <tbody className="table_tbody_data">
+                    <tr className="">
                       <th className="text-left w-p">Product</th>
                       <th className="text-center mnp-big w-b">BUY</th>
                       <th className="text-center mnp-big w-b">SELL</th>
@@ -154,7 +158,7 @@ const Home = () => {
                 </table>
               </div>
               <div className="product-title prate" id="divProduct">
-                <div className="product-title prate">
+                <div className="product-title prate pirate-padding_setting">
                   <table className="table">
                     <tbody>
                       <tr>
@@ -181,19 +185,16 @@ const Home = () => {
                         </td>
                         <td className="text-center mnp-sm buyb">
                           <div className="buybutton">
-                            <a
-                              href="https://bullion.safegold.in/Terminal/Login.html"
-                              target="_blank"
-                            >
+                            <Link to="/login">
                               <input type="button" value="BUY" />
-                            </a>
+                            </Link>
                           </div>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div className="product-title prate">
+                <div className="product-title prate pirate-padding_setting">
                   <table className="table">
                     <tbody>
                       <tr>
@@ -220,12 +221,9 @@ const Home = () => {
                         </td>
                         <td className="text-center mnp-sm buyb">
                           <div className="buybutton">
-                            <a
-                              href="https://bullion.safegold.in/Terminal/Login.html"
-                              target="_blank"
-                            >
+                            <Link to="/login">
                               <input type="button" value="BUY" />
-                            </a>
+                            </Link>
                           </div>
                         </td>
                       </tr>
@@ -236,8 +234,11 @@ const Home = () => {
             </div>
 
             <span className="spot-content-cover future">
-              <span id="divFuture" className="">
-                <div className="col-sm-6 col-md-6">
+              <div
+                id="divFuture"
+                className=" d-flex justify-content-center align-items-center gap-4"
+              >
+                <div className="col-sm-6 col-md-6 divFutureWidthSetting">
                   <div className="spt-cover">
                     <div className="content-title">
                       <h5>GOLD FUTURE</h5>
@@ -278,7 +279,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-sm-6 col-md-6">
+                <div className="col-sm-6 col-md-6 divFutureWidthSetting">
                   <div className="spt-cover">
                     <div className="content-title">
                       <h5>SILVER FUTURE</h5>
@@ -319,7 +320,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-              </span>
+              </div>
               <span id="divNext"></span>
             </span>
           </div>

@@ -1,0 +1,9 @@
+.biglineBeforeFooter {
+    background-color: #e3b748;
+    margin: 2rem 0rem;
+    width: 100vw;
+    transform: rotate(-3deg);
+    height: 10px;
+    position: absolute;
+    left: 0px;
+}

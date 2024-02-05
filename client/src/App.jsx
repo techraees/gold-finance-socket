@@ -13,10 +13,11 @@ import EconomicCalendar from "./components/Economic-calendar/EconomicCalendar";
 import Error404 from "./components/common/Error404";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import "/public/css/otr.css";
 import "/public/css/style.css";
 import "/public/css/style(1).css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   const [routes, setRoutes] = useState([
@@ -26,7 +27,7 @@ const App = () => {
     { path: "/market", element: <Market /> },
     { path: "/contact", element: <Contact /> },
     { path: "/about", element: <About /> },
-    { path: "/liverates", element: <Liverates /> },
+    { path: "/liverates", element: <Home /> },
     { path: "/update", element: <Update /> },
     { path: "/bank-detail", element: <BankDetail /> },
     { path: "/economic-calendar", element: <EconomicCalendar /> },
