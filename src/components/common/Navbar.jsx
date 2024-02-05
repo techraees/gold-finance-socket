@@ -62,56 +62,38 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li class="nav-item pgliverate">
-                    <a
-                      class="nav-link"
-                      href="https://bullion.safegold.in/liverate.html"
-                    >
+                    <Link to="/liverates" className="nav-link">
                       Liverates
-                    </a>
+                    </Link>
                   </li>
                   {/* <!-- <li class="nav-item pgcoin">
                   <a class="nav-link" href="coins.html">Coins</a>
               </li> --> */}
 
                   <li class="nav-item pgupdate">
-                    <a
-                      class="nav-link"
-                      href="https://bullion.safegold.in/update.html"
-                    >
+                    <Link to="/update" className="nav-link">
                       Updates
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item pgbankdetail">
-                    <a
-                      class="nav-link"
-                      href="https://bullion.safegold.in/bank-detail.html"
-                    >
+                    <Link to="/bank-detail" className="nav-link">
                       Bank Details
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item pgmarkettrendz">
-                    <a
-                      class="nav-link"
-                      href="https://bullion.safegold.in/market-trendz.html"
-                    >
+                    <Link to="/market" className="nav-link">
                       Market Trendz
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item pgecocalender">
-                    <a
-                      class="nav-link"
-                      href="https://bullion.safegold.in/economic-calendar.html"
-                    >
+                    <Link to="/economic-calendar" className="nav-link">
                       Economic Calendar
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item pgcontact">
-                    <a
-                      class="nav-link"
-                      href="https://bullion.safegold.in/contact.html"
-                    >
+                    <Link to="/contact" className="nav-link">
                       Contact Us
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
