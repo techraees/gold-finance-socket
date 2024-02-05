@@ -37,7 +37,7 @@ async function signup(req, res) {
         state,
         pincode,
         GST,
-        gstFile: req.file.filename
+        
       });
   
       // Save the Jeweler to the database

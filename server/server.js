@@ -2,9 +2,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const cors = require('cors');
 
 // Middleware
 app.use(express.json());
+
+app.use(cors());
 
 // Database connection
 mongoose.connect('mongodb+srv://zafarzain544:zainzafar@cluster0.vzots6d.mongodb.net/', {

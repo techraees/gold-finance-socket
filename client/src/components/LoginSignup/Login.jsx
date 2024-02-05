@@ -1,10 +1,34 @@
 import React, { useState } from "react";
+import "./../../../public/css/login/color.css";
+import "./../../../public/css/login/style.css";
+import "./../../../public/css/login/color-picker.css";
+import Signup from "./Signup";
 
 const Login = () => {
-  const [registerVisible, setRegisterVisible] = useState(false);
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  const [showModal, setShowModal] = useState(false); // State to manage modal visibility
 
-  const handleRegisterToggle = () => {
-    setRegisterVisible(!registerVisible);
+  const handleLoginChange = (event) => {
+    setLogin(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleLogin = () => {
+    // Handle login logic here
+    console.log("Login: ", login);
+    console.log("Password: ", password);
+  };
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -14,26 +38,29 @@ const Login = () => {
           <div className="fadeIn first">
             <img src="/logo.svg" id="icon" alt="User Icon" />
           </div>
+
           <form>
             <input
               type="text"
-              id="txtLogin"
               className="fadeIn second"
               name="login"
               placeholder="login"
+              value={login}
+              onChange={handleLoginChange}
             />
             <input
               type="password"
-              id="txtpass"
               className="fadeIn third"
-              name="login"
+              name="password"
               placeholder="password"
+              value={password}
+              onChange={handlePasswordChange}
             />
             <input
               type="button"
               className="fourth"
               value="Log In"
-              id="btnChecklogin"
+              onClick={handleLogin}
             />
           </form>
           <div id="formFooter">
@@ -41,28 +68,17 @@ const Login = () => {
               Don't have an account?{" "}
               <a
                 className="underlineHover"
-                href="https://bullion.safegold.in/Terminal/Login.html#"
-                onClick={handleRegisterToggle}
+                href="#"
+                onClick={openModal}
                 style={{ fontSize: "14px" }}
               >
                 Register Here
               </a>
             </span>
           </div>
+          {showModal && <Signup closeModal={closeModal} />}
         </div>
       </div>
-      {registerVisible && (
-        <div
-          className="modal fade registered"
-          id="myModal1"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="myModalLabel"
-          style={{ display: "block" }}
-        >
-          {/* Modal Content */}
-        </div>
-      )}
     </div>
   );
 };

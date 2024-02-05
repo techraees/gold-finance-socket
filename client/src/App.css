@@ -5,3 +5,9 @@
 .custom-date-picker {
   z-index: 9999; /* Ensure the date picker is on top of other elements */
 }
+@media (min-width: 1400px){
+
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+      max-width: 1140px !important;
+  }
+  }

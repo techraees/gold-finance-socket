@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import "/public/css/contact/otr.css";
-import "/public/css/contact/style.css";
-import "/public/css/contact/style(1).css";
+import "./../../../public/css/contact/otr.css";
+import "./../../../public/css/contact/style.css";
+import "./../../../public/css/contact/style(1).css";
+import "./../../../public/css/contact/bootstrap.min.css";
+import "./../../../public/css/contact/font-awesome.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -75,7 +78,7 @@ const Contact = () => {
                                   id="txtName"
                                   type="text"
                                   name="name"
-                                  className="form-control"
+                                  className="form-control form-left"
                                   placeholder="Please enter your Name"
                                   required=""
                                   onChange={handleChange}
@@ -90,7 +93,7 @@ const Contact = () => {
                                   id="txtEmail"
                                   type="text"
                                   name="email"
-                                  className="form-control"
+                                  className="form-control form-right"
                                   placeholder="Please enter your email"
                                   required=""
                                   onChange={handleChange}
@@ -107,7 +110,7 @@ const Contact = () => {
                                   id="txtPhone"
                                   type="number"
                                   name="phone"
-                                  className="form-control"
+                                  className="form-control form-left"
                                   placeholder="Please enter your phone"
                                   onChange={handleChange}
                                 />
@@ -121,7 +124,7 @@ const Contact = () => {
                                   id="sub"
                                   type="text"
                                   name="subject"
-                                  className="form-control"
+                                  className="form-control form-right"
                                   placeholder="Please enter Subject"
                                   onChange={handleChange}
                                 />
@@ -161,7 +164,7 @@ const Contact = () => {
                               className="form-group"
                               style={{ margin: "0px 0px 10px" }}
                             >
-                              <div className="col-md-12 text-center">
+                              <div className="text-center">
                                 <button
                                   type="button"
                                   className="thm-btn bgclr-1"

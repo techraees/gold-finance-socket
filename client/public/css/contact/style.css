@@ -199,6 +199,7 @@ body:after {
   font-weight: bold;
   letter-spacing: 1px;
   color: #00bbb4;
+  font-size: 2.2rem !important;
 }
 
 .content-title h5 {
@@ -1883,18 +1884,30 @@ footer {
 .form-control {
   border: 1px solid #cecece;
   letter-spacing: 0;
+  font-size: 1.6rem !important;
+  color: #495057 !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  padding: 0.5rem 0.75rem !important;
 }
 .for-img-look label {
   background: #0000;
   margin-bottom: 0px;
   color: #00bbb4;
-  font-size: 14px;
+  font-size: 16px !important;
   font-weight: bold;
 }
+@media (min-width: 1400px){
+
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1140px !important;
+}
+}
 .thm-btn.bgclr-1 {
-  padding: 7px 24px;
+  padding: 12px 24px;
   letter-spacing: 0;
   background: #00bbb4;
+  width: 100%;
   border: 0;
   border-radius: 3px;
   color: #fff;
@@ -1941,19 +1954,17 @@ footer {
   text-align: center;
   opacity: 0.7;
 }
-.form-group input {
-  width: 100%;
-}
+
 @media screen and (max-width: 425px) {
   legend,
   .scheduler-border label {
     font-size: 14px;
   }
   .form-group input {
-    width: 100%;
+    width: 100% !important;
   }
   .form-group input {
-    width: 100%;
+    width: 100% !important;
     font-size: 12px;
   }
   .add-banner img {

@@ -1,0 +1,97 @@
+*{color:#000;}
+a:focus, a:hover{color:#fff;}
+.logo-cover img{    width: 150px;
+    margin: 0;
+    padding: 1px 2px;}
+a, span.content, .center .nav-tabs > li.active a, .right .panel-title a, #pending-edit .pen-ed-cover input, .centerdatepicker .form-group input[type="text"], .centerdatepicker.date-sub-btn .from-date .form-group .date input {
+    color: #fff;
+}
+body, .r-new-order select, .change-password input, .header-center-button input[type="button"], .mw-cin input, .mw-cvr #ddlFontSize, .new-order-h .table.norder tr td span .pendingbn, .r-new-order .switch-button ul li a:hover, .right .r-new-order .switch-button ul li.active a, .r-price, .login-cover input[type=text], .login-cover input[type=password], .r-new-order input ,.r-new-order .switch-button ul li.active a{background: #e4f7f6;}
+.yellow{color:#d48c00 !important;}
+.lgray, .tab-content.first-part-height, .icon-btn .panel, .centerdatepicker .form-group input[type="text"] {
+    background-color: #fff;
+}
+.center .center-first-part-cover .first-part .Excelbutton{    background: #fff;
+    top: 0px;
+    color: #000;
+    border: 1px solid #e6e1e1;
+    right: 4px;
+    
+    box-shadow: 0px 0px 3px #cacaca;}
+    .right .panel-title i{color:#fff;}
+    .centerdatepicker .form-group input[type="text"]{color:#000;}
+    .input-group-addon  span{color:#fff;}
+    .centerdatepicker.date-sub-btn .from-date .form-group .date input[type="submit"]{color:#fff;}
+.content.h,.r-price-box label.h{color:green;}
+.content.l,.r-price-box label.l{color:red;}
+.content.e,.r-price-box label.e{color:#000;}
+.sm-f span {color: #6f6e6e !important;}
+#collapseFive table tr td{border-bottom:1px solid #eaeaea !important}
+
+.r-new-order .select:hover::after {color: #f39c12;}
+.icon-btn i,.right .r-new-order .switch-button ul li.active a,.r-new-order .switch-button ul li.active a{color:#fff;}
+
+/** left **/
+.center .nav-tabs>li>a,.right .panel-default>.panel-heading+.panel-collapse>.panel-body,.header-cover,.time,.left,.right,.market-watch-bottom .symbol-cover .table th[type=password],.tab-content.first-part-height{background:#e4f7f6;}
+.left .table th,.center .nav-tabs>li.active>a,.center-table table.table tr th,.accordion-toggle,.ordpending-chn-up,.protil,.tbg,.r-new-order .switch-button ul{background: #00bbb4;}
+.left .table td,.table.or-list,.right .panel-default>.panel-heading+.panel-collapse>.panel-body,.r-new-order .nav>li>a:focus,.r-new-order  .nav>li>a:hover,.login-cover input:-internal-autofill-selected,.trade-box .panel-default{background-color:#e4f7f6;}
+    .left .table td, .tab-content.first-part-height, .nav-tabs, .center-table table.table > tr > th, .table.or-list tr td, .poptd1, .change-password, .mw-cin input, .fontprofile, .panel-body.r-pending-order table.tp3 tr td, .r-price, .login-cover h2.active, .login-cover #formContent, .login-cover #formFooter, .login-cover input[type=text], .login-cover input[type=password]{
+        border-color: #fff;
+    }
+    .lg-t{color: #00817c;}
+.left .title h6,.header-center-button input[type="button"],.icon-btn a,.login-cover input[type=button],.login-cover  input[type=submit],.login-cover input[type=reset]{background-color:#00bbb4;color:#fff;}
+.center .center-first-part-cover .second-part .Excelbutton{padding: 10px;
+    border-radius: 4px 4px 0px 0px;
+    background: #fff;
+    top: 0px;
+    color: #000;
+    border: 1px solid #e6e1e1;
+    right: 4px;
+    box-shadow: 0px 0px 3px #cacaca;}
+.center .nav-tabs>li>a:hover{color:#000;}
+.left .title h6{background-color:#0000;color:#000}
+.r-price .bg-buy,.modal-dialog.modal-sm .r-price .bg-buy{background-color:#008000 !important;color:#fff;}
+.r-price .bg-sell,.modal-dialog.modal-sm .r-price .bg-sell{background-color:red !important;color:#fff;}
+.bg-sell.pendingbn, .change-password input, .header-center-button input[type="button"], .header-cover, .right, .left, .SymbolePropert.table .symboltdg, .tbg .symboltdw, .market-watch-bottom .table.prate td, .r-new-order .switch-button ul {
+    border-color: #fff;
+}
+#pending-edit .modal-content {
+    border: 1px solid #fff;
+}
+/** center **/
+.login-cover #formFooter, .input-group.date .input-group-addon, .centerdatepicker.date-sub-btn .from-date .form-group .date input {
+    background-color: #00bbb4;
+}
+/*.left::-webkit-scrollbar,.center::-webkit-scrollbar ,.right::-webkit-scrollbar{width: 5px;} 
+.left::-webkit-scrollbar-track,.center::-webkit-scrollbar-track,.right::-webkit-scrollbar-track {box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);}
+.left::-webkit-scrollbar-thumb,.center::-webkit-scrollbar-thumb,.right::-webkit-scrollbar-thumb{background-color: #363636;outline: 1px solid #363636;border-radius:50px;}
+.center .second-part ::-webkit-scrollbar{height:4px;border-radius:50px;}*/
+
+.span.content{}
+
+.login-cover .first img {background: #e3f6f5;width: 251px;padding: 10px;}
+
+#trade-box .panel-title .sname, #pending-edit .update-limit {
+    color: #777;
+}
+
+.modal-body #formContent {
+    background: transparent;
+}
+.center .nav-tabs>li.active>a,.center .nav-tabs>li>a:hover{color: #fff !important;background: #00bbb4;}
+.center .nav-tabs>li>a{
+    background: #fff;
+    top: 0px;
+    color: #000;
+    border: 1px solid #fff;
+    right: 4px;
+    box-shadow: 0px 0px 3px #cacaca;
+    right: -1px;
+}
+.left{background-color:#fff !important;}
+.right .r-new-order .switch-button ul li.active a, .r-new-order select,.r-price{background-color:#fff ;}
+.right .r-new-order .switch-button ul li.active a, .r-new-order .switch-button ul li.active a,.r-new-order.switch-button ul li a:hover{color: #00bbb4 ; }
+.r-new-order.switch-button ul li a:hover{color: #00bbb4;}
+.header-cover{background-color:#fff;    border-bottom: 1px solid #eaeaea;}
+.switch-button .nav-tabs>li>a:hover{background: #fff !important;color:#00bbb4;}
+.r-new-order input{width: 91% !important;border: 1px solid #e0e0e0;background: #fff !important;}
