@@ -1,141 +1,118 @@
-import './Footer.css'
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import "./Footer.css"; // Make sure to import the CSS file
+import { BASE_URL } from "../../config"; // Assuming config.js is in the same directory level
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Footer = () => {
+  const { backgroundColor, textColor } = useContext(ThemeContext);
+  const [footerData, setFooterData] = useState(null);
+
+  useEffect(() => {
+    // Fetch footer data from backend
+    axios
+      .get(`${BASE_URL}/api/footer`)
+      .then((response) => {
+        setFooterData(response.data[0]); // Assuming you're fetching a single footer
+      })
+      .catch((error) => {
+        console.error("Error fetching footer data:", error);
+      });
+  }, []);
+
   return (
     <div>
-      <div id="ftr">
-        <footer>
-          <div class="container">
-            <div className="biglineBeforeFooter"></div>
-            <div class="footer-top">
-              <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-12">
-                  <a
-                    class="logo-wrapper"
-                    href="https://bullion.safegold.in/index.html"
-                  >
-                    <img src="public/logo.svg" alt="" />
-                  </a>
-                  <p class="txt">
-                    SafeGold offers 24K Gold and Silver minted products in
-                    multiple denominations and designs. SafeGold is an organised
-                    and transparent method of buying and accumulating 24K
-                    physical gold in compliance with all applicable laws and
-                    regulations.
-                  </p>
-                  <div class="social-media order-lg-last">
-                    <p class="mb-0 d-flex">
-                      <a
-                        href="https://bullion.safegold.in/index.html#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <span class="fa fa-facebook">
-                          <i class="sr-only">Facebook</i>
-                        </span>
-                      </a>
-                      <a
-                        href="https://bullion.safegold.in/index.html#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <span class="fa fa-twitter">
-                          <i class="sr-only">Twitter</i>
-                        </span>
-                      </a>
-                      <a
-                        href="https://bullion.safegold.in/index.html#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <span class="fa fa-instagram">
-                          <i class="sr-only">Instagram</i>
-                        </span>
-                      </a>
-                      <a
-                        href="https://bullion.safegold.in/index.html#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <span class="fa fa-linkedin">
-                          <i class="sr-only">Dribbble</i>
-                        </span>
-                      </a>
-                      <a
-                        href="https://bullion.safegold.in/index.html#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <span class="fa fa-android">
-                          <i class="sr-only">Android</i>
-                        </span>
-                      </a>
-                      <a
-                        href="https://apps.apple.com/us/app/safegold-for-business/id1584753078"
-                        target="_blank"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <span class="fa fa-apple">
-                          <i class="sr-only">Ios</i>
-                        </span>
-                      </a>
-                    </p>
+      {footerData && (
+        <div id="ftr">
+          <footer>
+            <div className="container">
+              <div className="footer-top">
+                <div className="row">
+                  <div className="col-xl-3 col-lg-3 col-md-12">
+                    <a className="logo-wrapper" href={footerData.logoLink}>
+                      <img src={footerData.logoSrc} alt="" />
+                    </a>
+                    <p className="txt">{footerData.description}</p>
+                    <div className="social-media order-lg-last d-flex">
+                      {footerData.socialMediaLinks.map((link, index) => (
+                        <a
+                          href={link.url}
+                          className="d-flex align-items-center justify-content-center"
+                          key={index}
+                        >
+                          <span
+                            className={`fa fa-${link.icon}`}
+                            style={{
+                              borderColor: backgroundColor,
+                              color: backgroundColor,
+                            }}
+                          />
+                          <i
+                            className="sr-only"
+                            style={{ color: backgroundColor }}
+                          >
+                            {link.name}
+                          </i>
+                        </a>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div class="col-xl-2 offset-xl-1 col-lg-2 col-md-3">
-                  <h4>Useful Links</h4>
-                  <ul class="links">
-                    <li>
-                      <a href="https://bullion.safegold.in/about.html">
-                        <i class="fa fa-angle-right"></i>About Us
-                      </a>
-                    </li>
-                  </ul>
-                  <div class="bank-logo">
-                    <ul>
-                      <li>
-                        <img src="/brinks.svg" />
-                      </li>
-                      {/* <!-- <li><img src="images/idbi.svg"/></li> --> */}
+                  <div className="col-xl-2 offset-xl-1 col-lg-2 col-md-3">
+                    <h4 style={{ color: backgroundColor }}>Useful Links</h4>
+                    <ul className="links">
+                      {footerData.usefulLinks.map((link, index) => (
+                        <li key={index}>
+                          <a href={link.url}>
+                            <i className="fa fa-angle-right" /> {link.name}
+                          </a>
+                        </li>
+                      ))}
                     </ul>
                   </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3">
-                  <h4>Services</h4>
-                  <ul class="links">
-                    <li>
-                      <a href="https://bullion.safegold.in/disclaimer.html">
-                        <i class="fa fa-angle-right"></i>Disclaimer
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                  <h4>Contact Us</h4>
-                  <div class="contact-infos">
-                    <div class="single-info">
-                      <div class="icon-wrapper">
-                        <i class="fa fa-street-view" aria-hidden="true"></i>
+                  <div className="col-xl-3 col-lg-3 col-md-3">
+                    <h4 style={{ color: backgroundColor }}>Services</h4>
+                    <ul className="links">
+                      {footerData.services.map((service, index) => (
+                        <li key={index}>
+                          <a href={service.url}>
+                            <i className="fa fa-angle-right" /> {service.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="col-xl-3 col-lg-4 col-md-6">
+                    <h4 style={{ color: backgroundColor }}>Contact Us</h4>
+                    <div className="contact-infos">
+                      <div className="single-info">
+                        <div className="icon-wrapper">
+                          <i className="fa fa-street-view" aria-hidden="true" />
+                        </div>
+                        <p className="address1">{footerData.contact.address}</p>
                       </div>
-                      <p class="address1"></p>
-                    </div>
-                    <div class="single-info">
-                      <div class="icon-wrapper">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
+                      <div className="single-info">
+                        <div className="icon-wrapper">
+                          <i className="fa fa-phone" aria-hidden="true" />
+                        </div>
+                        <p className="bookingno1">{footerData.contact.phone}</p>
                       </div>
-                      <p class="bookingno1">+91 84484 40373</p>
-                    </div>
-                    <div class="single-info">
-                      <div class="icon-wrapper">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                      <div className="single-info">
+                        <div className="icon-wrapper">
+                          <i className="fa fa-envelope-o" aria-hidden="true" />
+                        </div>
+                        <p className="email1">{footerData.contact.email}</p>
                       </div>
-                      <p class="email1"></p>
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="footer-bottom">
+                <p>{footerData.copyright}</p>
+              </div>
             </div>
-            <div class="footer-bottom">
-              <p>© Copyrights 2021 SAFEGOLD. All rights reserved.</p>
-            </div>
-          </div>
-        </footer>
-      </div>
+          </footer>
+        </div>
+      )}
     </div>
   );
 };

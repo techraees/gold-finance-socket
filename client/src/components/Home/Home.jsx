@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Home = () => {
+  const { backgroundColor, textColor } = useContext(ThemeContext);
   return (
     <div>
       <div className="liverate-cover">
         <div className="liverate-title">
-          <h4>LIVE RATE</h4>
+          <h4 style={{ color: backgroundColor }}>LIVE RATE</h4>
         </div>
         <div className="spot-cover">
           <div className="container">
             <div className="spot-content-cover" id="divSpot">
               <div className="col-sm-4 col-md-4  px-3">
                 <div className="spt-cover">
-                  <div className="content-title">
-                    <h5>GOLD (USD/OZ)</h5>
+                  <div
+                    className="content-title"
+                    style={{
+                      backgroundColor: backgroundColor,
+                    }}
+                  >
+                    <h5 style={{ color: textColor }}>GOLD (USD/OZ)</h5>
                   </div>
                   <div className="spot-rate-cover">
                     <div
@@ -52,8 +59,13 @@ const Home = () => {
               </div>
               <div className="col-sm-4 col-md-4  px-3">
                 <div className="spt-cover ">
-                  <div className="content-title">
-                    <h5>SILVER (USD/OZ)</h5>
+                  <div
+                    className="content-title"
+                    style={{
+                      backgroundColor: backgroundColor,
+                    }}
+                  >
+                    <h5 style={{ color: textColor }}>SILVER (USD/OZ)</h5>
                   </div>
                   <div className="spot-rate-cover">
                     <div
@@ -91,8 +103,13 @@ const Home = () => {
               </div>
               <div className="col-sm-4 col-md-4  px-3">
                 <div className="spt-cover">
-                  <div className="content-title">
-                    <h5>INR (USD/INR)</h5>
+                  <div
+                    className="content-title"
+                    style={{
+                      backgroundColor: backgroundColor,
+                    }}
+                  >
+                    <h5 style={{ color: textColor }}>INR (USD/INR)</h5>
                   </div>
                   <div className="spot-rate-cover">
                     <div
@@ -136,23 +153,66 @@ const Home = () => {
               >
                 <table className="table">
                   <tbody className="table_tbody_data">
-                    <tr className="">
-                      <th className="text-left w-p">Product</th>
-                      <th className="text-center mnp-big w-b">BUY</th>
-                      <th className="text-center mnp-big w-b">SELL</th>
+                    <tr
+                      className=""
+                      style={{
+                        backgroundColor: backgroundColor,
+                      }}
+                    >
+                      <th
+                        className="text-left w-p"
+                        style={{
+                          color: textColor,
+                          backgroundColor: backgroundColor,
+                        }}
+                      >
+                        Product
+                      </th>
+                      <th
+                        className="text-center mnp-big w-b"
+                        style={{
+                          color: textColor,
+                          backgroundColor: backgroundColor,
+                        }}
+                      >
+                        BUY
+                      </th>
+                      <th
+                        className="text-center mnp-big w-b"
+                        style={{
+                          color: textColor,
+                          backgroundColor: backgroundColor,
+                        }}
+                      >
+                        SELL
+                      </th>
                       <th
                         className="text-center mnp-sm w-s"
-                        style={{ display: "none" }}
+                        style={{
+                          display: "none",
+                          color: textColor,
+                          backgroundColor: backgroundColor,
+                        }}
                       >
                         HIGH
                       </th>
                       <th
                         className="text-center mnp-sm w-s"
-                        style={{ display: "none" }}
+                        style={{
+                          display: "none",
+                          color: textColor,
+                          backgroundColor: backgroundColor,
+                        }}
                       >
                         LOW
                       </th>
-                      <th className="text-center mnp-sm buyb"></th>
+                      <th
+                        className="text-center mnp-sm buyb"
+                        style={{
+                          color: textColor,
+                          backgroundColor: backgroundColor,
+                        }}
+                      ></th>
                     </tr>
                   </tbody>
                 </table>
@@ -186,7 +246,14 @@ const Home = () => {
                         <td className="text-center mnp-sm buyb">
                           <div className="buybutton">
                             <Link to="/login">
-                              <input type="button" value="BUY" />
+                              <input
+                                type="button"
+                                value="BUY"
+                                style={{
+                                  color: textColor,
+                                  backgroundColor: backgroundColor,
+                                }}
+                              />
                             </Link>
                           </div>
                         </td>
@@ -222,7 +289,14 @@ const Home = () => {
                         <td className="text-center mnp-sm buyb">
                           <div className="buybutton">
                             <Link to="/login">
-                              <input type="button" value="BUY" />
+                              <input
+                                type="button"
+                                value="BUY"
+                                style={{
+                                  color: textColor,
+                                  backgroundColor: backgroundColor,
+                                }}
+                              />
                             </Link>
                           </div>
                         </td>
@@ -240,8 +314,13 @@ const Home = () => {
               >
                 <div className="col-sm-6 col-md-6 divFutureWidthSetting">
                   <div className="spt-cover">
-                    <div className="content-title">
-                      <h5>GOLD FUTURE</h5>
+                    <div
+                      className="content-title"
+                      style={{
+                        backgroundColor: backgroundColor,
+                      }}
+                    >
+                      <h5 style={{ color: textColor }}>GOLD FUTURE</h5>
                     </div>
                     <div className="spot-rate-cover">
                       <div className="left-cover">
@@ -281,8 +360,13 @@ const Home = () => {
                 </div>
                 <div className="col-sm-6 col-md-6 divFutureWidthSetting">
                   <div className="spt-cover">
-                    <div className="content-title">
-                      <h5>SILVER FUTURE</h5>
+                    <div
+                      className="content-title"
+                      style={{
+                        backgroundColor: backgroundColor,
+                      }}
+                    >
+                      <h5 style={{ color: textColor }}>SILVER FUTURE</h5>
                     </div>
                     <div className="spot-rate-cover">
                       <div className="left-cover">

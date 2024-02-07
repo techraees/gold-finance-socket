@@ -1,28 +1,61 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { BASE_URL } from "../../config";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const About = () => {
+  const { backgroundColor, textColor } = useContext(ThemeContext);
+  const [aboutData, setAboutData] = useState(null);
+
+  useEffect(() => {
+    // Fetch about data from the backend API
+    axios
+      .get(`${BASE_URL}/api/about`) // Replace "/api/about" with your actual backend API endpoint
+      .then((response) => {
+        setAboutData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching about data:", error);
+        // Optionally, you can update state to indicate an error occurred
+        // setError(true);
+      });
+  }, []);
+
   return (
-    <div class="main-cover">
-      <div class="container">
-        <div class="bnk-cvr">
-          <div class="bank-cover">
-            <div class="container">
-              <div class="liverate-cover">
-                <div class="liverate-title">
-                  <h4>ABOUT US</h4>
+    <div className="main-cover">
+      <div className="container">
+        <div className="bnk-cvr">
+          <div className="bank-cover">
+            <div className="container">
+              <div className="liverate-cover">
+                <div className="liverate-title">
+                  <h4 style={{ color: backgroundColor }}>ABOUT US</h4>
                 </div>
-                <div class="about-cover">
-                  <p
+                <div className="about-cover align-items-center">
+                  <div
+                    className="col-md-6"
                     style={{
-                      color: "#000",
-                      fontWeight: "bold",
-                      textAlign: "center",
-                      fontSize: "30px",
-                      marginTop: "20px",
+                      color: "black",
+                      padding: "20px",
+                      borderRadius: "10px",
                     }}
                   >
-                    Coming Soon....
-                  </p>
+                    {aboutData ? (
+                      <>
+                        <p style={{ color: "black" }}>{aboutData.content}</p>
+                        {aboutData.image && (
+                          <img
+                            src={aboutData.image}
+                            alt="About Us"
+                            className="img-fluid rounded"
+                            style={{ maxHeight: "300px", objectFit: "cover" }}
+                          />
+                        )}
+                      </>
+                    ) : (
+                      <p>Loading...</p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

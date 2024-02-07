@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const UpdateComponent = () => {
+  const { backgroundColor, textColor } = useContext(ThemeContext);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [searched, setSearched] = useState(false);
@@ -20,7 +22,7 @@ const UpdateComponent = () => {
             <div className="title-wth title-name">
               <div className="liverate-cover">
                 <div className="liverate-title">
-                  <h4>UPDATES</h4>
+                  <h4 style={{ color: backgroundColor }}>UPDATES</h4>
                 </div>
                 <div className="mn-title-border">
                   <div className="date-picker">
@@ -45,7 +47,11 @@ const UpdateComponent = () => {
                     <input
                       type="button"
                       onClick={handleSearch}
-                      style={{ cursor: "pointer" }}
+                      style={{
+                        cursor: "pointer",
+                        backgroundColor: backgroundColor,
+                        color: textColor,
+                      }}
                       value="Search"
                     />
                   </div>
@@ -65,7 +71,7 @@ const UpdateComponent = () => {
             </div>
           </div>
           <div className="col-md-12" id="divNews">
-            <h1> No update Found </h1>
+            <h1 style={{ color: backgroundColor }}> No update Found </h1>
           </div>
         </div>
       </div>

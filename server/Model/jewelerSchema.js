@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const jewelerSchema = new mongoose.Schema({
     name: String,
@@ -18,6 +18,4 @@ const jewelerSchema = new mongoose.Schema({
     gstFile: String,
 });
 
-const Jeweler = mongoose.model('Jeweler', jewelerSchema);
-
-module.exports = { Jeweler };
+export const Jeweler = mongoose.model('Jeweler', jewelerSchema);

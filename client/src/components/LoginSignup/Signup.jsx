@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
 import "./../../../public/css/login/color.css";
 import "./../../../public/css/login/style.css";
 import "./../../../public/css/login/color-picker.css";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Signup = ({ closeModal }) => {
+  const { backgroundColor, textColor } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,7 +52,7 @@ const Signup = ({ closeModal }) => {
 
   return (
     <Modal show onHide={closeModal} className="custom-modal-sm">
-      <Modal.Header style={{ backgroundColor: "#00bbb4" }}>
+      <Modal.Header style={{ backgroundColor: backgroundColor }}>
         <div className="d-flex" style={{ width: "100%" }}>
           <Modal.Title
             className="d-flex  justify-content-center"
@@ -226,16 +228,8 @@ const Signup = ({ closeModal }) => {
                   className="fourth"
                   value="SUBMIT"
                   id="btnregister"
+                  style={{ backgroundColor: backgroundColor }}
                 />
-                <div
-                  id="msgForSubmit"
-                  className="alert alert-success alert-autocloseable-success"
-                  style={
-                    {
-                      /* your styles */
-                    }
-                  }
-                ></div>
               </form>
             </div>
           </div>

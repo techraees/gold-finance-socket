@@ -1,6 +1,6 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { Jeweler } = require('./../Model/jewelerSchema');
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { Jeweler } from './../Model/jewelerSchema.js';
 
 async function signup(req, res) {
     try {
@@ -81,7 +81,4 @@ async function login(req, res) {
       }
 }
 
-module.exports = {
-  signup,
-  login
-};
+export { signup, login };

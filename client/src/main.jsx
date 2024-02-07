@@ -1,13 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext.jsx"; // Import the ThemeProvider
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
-);
+try {
+  ReactDOM.render(
+    <React.StrictMode>
+      <ThemeProvider>
+        {" "}
+        {/* Wrap your App component with ThemeProvider */}
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </React.StrictMode>,
+    document.getElementById("root")
+  );
+} catch (error) {
+  console.error("Error rendering React application:", error);
+}

@@ -144,7 +144,7 @@ body {
   color: #fff;
 }
 .menu-cover.menu-second .ftco-navbar-light {
-  background: #00bbb4 !important;
+  background: #00bbb4 ;
   padding: 0px;
   border-radius: 0px;
 }
@@ -1017,8 +1017,11 @@ footer {
   border-radius: 5px;
 }
 
-.tablePriceBuySell .table .table_tbody_data th {
+.tablePriceBuySell .table  {
   background: #00bbb4 !important;
+  padding: 0.5rem;
+}
+.table_tbody_data th{
   padding: 0.5rem;
 }
 

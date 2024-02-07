@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+import { signup, login } from './../controller/jewellerController.js';
+import multer from 'multer';
+
 const router = express.Router();
-const authController = require('./../controller/jewellerController');
-const multer = require('multer');
 
 // Multer storage configuration for uploading GST files
 const storage = multer.diskStorage({
@@ -16,9 +17,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Signup route with multer middleware for file upload
-router.post('/signup', upload.single('gstFile'), authController.signup);
+router.post('/signup', upload.single('gstFile'), signup);
 
 // Login route
-router.post('/login', authController.login);
+router.post('/login', login);
 
-module.exports = router;
+export default router;

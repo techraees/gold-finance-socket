@@ -1,28 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import "./../../../public/css/contact/otr.css";
 import "./../../../public/css/contact/style.css";
 import "./../../../public/css/contact/style(1).css";
 import "./../../../public/css/contact/bootstrap.min.css";
 import "./../../../public/css/contact/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BASE_URL } from "../../config";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Contact = () => {
+  const { backgroundColor, textColor } = useContext(ThemeContext);
+  const [contactData, setContactData] = useState(null);
   const [formData, setFormData] = useState({
-    name: "",
+    address: "",
     email: "",
     phone: "",
-    subject: "",
-    message: "",
   });
 
-  const handleSubmit = () => {
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
-  };
+  useEffect(() => {
+    const fetchContactData = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/api/contact`);
+        if (response.data.success && response.data.data.length > 0) {
+          setContactData(response.data.data[0]); // Access the first item in the array
+        } else {
+          console.error("No contact data found.");
+        }
+      } catch (error) {
+        console.error("Error fetching contact data:", error);
+      }
+    };
+
+    fetchContactData();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      // Handle form submission logic here
+      // You can use formData to access form fields data
+      await axios.post("/api/submit", formData);
+      console.log("Form submitted:", formData);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (
@@ -30,7 +56,7 @@ const Contact = () => {
       <div className="container">
         <div className="liverate-cover">
           <div className="liverate-title">
-            <h4>CONTACT US</h4>
+            <h4 style={{ color: backgroundColor }}>CONTACT US</h4>
           </div>
         </div>
         <div className="bnk-cvr">
@@ -40,22 +66,18 @@ const Contact = () => {
                 <div className="cnt-detail-cover">
                   <p>
                     <i className="fa fa-map"></i>
-                    <strong>ADDRESS</strong>
-                    <span className="address1"></span>
-                    <span className="address2"></span>
-                    <span className="address3"></span>
+                    <strong style={{ color: backgroundColor }}>ADDRESS</strong>
+                    <span className="address1">{contactData?.address}</span>
                   </p>
                   <p>
                     <i className="fa fa-mobile"></i>
-                    <strong>NUMBER</strong>
-                    <span className="bookingno1">+91 84484 40373</span>
-                    {/* Add more phone numbers as needed */}
+                    <strong style={{ color: backgroundColor }}>NUMBER</strong>
+                    <span className="bookingno1">{contactData?.phone}</span>
                   </p>
                   <p>
                     <i className="fa fa-envelope"></i>
-                    <strong>E-MAIL</strong>
-                    <span className="email1"></span>
-                    <span className="email2"></span>
+                    <strong style={{ color: backgroundColor }}>E-MAIL</strong>
+                    <span className="email1">{contactData?.email}</span>
                   </p>
                 </div>
               </div>
@@ -73,7 +95,12 @@ const Contact = () => {
                           <div className="row">
                             <div className="col-md-6">
                               <div className="form-group">
-                                <label htmlFor="form_name">Name *</label>
+                                <label
+                                  htmlFor="form_name"
+                                  style={{ color: backgroundColor }}
+                                >
+                                  Name *
+                                </label>
                                 <input
                                   id="txtName"
                                   type="text"
@@ -88,7 +115,12 @@ const Contact = () => {
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
-                                <label htmlFor="form_email">Email *</label>
+                                <label
+                                  htmlFor="form_email"
+                                  style={{ color: backgroundColor }}
+                                >
+                                  Email *
+                                </label>
                                 <input
                                   id="txtEmail"
                                   type="text"
@@ -105,7 +137,12 @@ const Contact = () => {
                           <div className="row">
                             <div className="col-md-6">
                               <div className="form-group">
-                                <label htmlFor="form_phone">Phone *</label>
+                                <label
+                                  htmlFor="form_phone"
+                                  style={{ color: backgroundColor }}
+                                >
+                                  Phone *
+                                </label>
                                 <input
                                   id="txtPhone"
                                   type="number"
@@ -119,7 +156,12 @@ const Contact = () => {
                             </div>
                             <div className="col-md-6">
                               <div className="form-group">
-                                <label htmlFor="form_email">Subject</label>
+                                <label
+                                  htmlFor="form_email"
+                                  style={{ color: backgroundColor }}
+                                >
+                                  Subject
+                                </label>
                                 <input
                                   id="sub"
                                   type="text"
@@ -135,7 +177,12 @@ const Contact = () => {
                           <div className="row">
                             <div className="col-md-12">
                               <div className="form-group">
-                                <label htmlFor="form_message">Message *</label>
+                                <label
+                                  htmlFor="form_message"
+                                  style={{ color: backgroundColor }}
+                                >
+                                  Message *
+                                </label>
                                 <textarea
                                   id="message"
                                   name="message"
@@ -169,6 +216,7 @@ const Contact = () => {
                                   type="button"
                                   className="thm-btn bgclr-1"
                                   onClick={handleSubmit}
+                                  style={{ backgroundColor: backgroundColor }}
                                 >
                                   Submit
                                 </button>

@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { BASE_URL } from "./../../config.js";
+import { ThemeContext } from "../../context/ThemeContext.jsx";
 
 const BankDetail = () => {
+  const { backgroundColor, textColor } = useContext(ThemeContext);
+  const [bankData, setBankData] = useState(null);
+
+  useEffect(() => {
+    // Fetch bank details from the backend API
+    axios
+      .get(`${BASE_URL}/api/bank-details`)
+      .then((response) => {
+        setBankData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching bank details:", error);
+      });
+  }, []);
+
   return (
     <div className="liverate-cover">
       <div className="liverate-title">
-        <h4>BANK DETAILS</h4>
+        <h4 style={{ color: backgroundColor }}>BANK DETAILS</h4>
       </div>
       <div className="bank-cover">
         <div className="container a1">
@@ -15,48 +33,88 @@ const BankDetail = () => {
                   <img src="/yes.jpg" alt="..." className="img-thumbnail" />
                 </div>
                 <div className="tg-contentbox">
-                  <table
-                    width="100%"
-                    border="0"
-                    cellspacing="0"
-                    cellpadding="0"
-                    className="bankd"
-                  >
-                    <tbody>
-                      <tr>
-                        <td className="ban1">
-                          BANK NAME <span className="b_bott">::</span>
-                        </td>
-                        <td className="ban3">Yes Bank</td>
-                      </tr>
-                      <tr>
-                        <td className="ban1">
-                          ACCOUNT NAME <span className="b_bott">::</span>
-                        </td>
-                        <td className="ban3">
-                          Digital Gold India Private Limited
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="ban1">
-                          ACCOUNT NUMBER<span className="b_bott">::</span>
-                        </td>
-                        <td className="ban3">041981300001696</td>
-                      </tr>
-                      <tr>
-                        <td className="ban1">
-                          IFSC CODE <span className="b_bott">::</span>
-                        </td>
-                        <td className="ban3">YESB0000419</td>
-                      </tr>
-                      <tr>
-                        <td className="ban1">
-                          BRANCH NAME <span className="b_bott">::</span>
-                        </td>
-                        <td className="ban3">Lower parel, Mumbai - 400013</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  {bankData && (
+                    <table
+                      width="100%"
+                      border="0"
+                      cellspacing="0"
+                      cellpadding="0"
+                      className="bankd"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            className="ban1"
+                            style={{ color: backgroundColor }}
+                          >
+                            BANK NAME <span className="b_bott">::</span>
+                          </td>
+                          <td
+                            className="ban3"
+                            style={{ color: backgroundColor }}
+                          >
+                            {bankData.bankName}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            className="ban1"
+                            style={{ color: backgroundColor }}
+                          >
+                            ACCOUNT NAME <span className="b_bott">::</span>
+                          </td>
+                          <td
+                            className="ban3"
+                            style={{ color: backgroundColor }}
+                          >
+                            {bankData.accountName}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            className="ban1"
+                            style={{ color: backgroundColor }}
+                          >
+                            ACCOUNT NUMBER<span className="b_bott">::</span>
+                          </td>
+                          <td
+                            className="ban3"
+                            style={{ color: backgroundColor }}
+                          >
+                            {bankData.accountNumber}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            className="ban1"
+                            style={{ color: backgroundColor }}
+                          >
+                            IFSC CODE <span className="b_bott">::</span>
+                          </td>
+                          <td
+                            className="ban3"
+                            style={{ color: backgroundColor }}
+                          >
+                            {bankData.ifscCode}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            className="ban1"
+                            style={{ color: backgroundColor }}
+                          >
+                            BRANCH NAME <span className="b_bott">::</span>
+                          </td>
+                          <td
+                            className="ban3"
+                            style={{ color: backgroundColor }}
+                          >
+                            {bankData.branchName}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  )}
                 </div>
               </div>
             </div>

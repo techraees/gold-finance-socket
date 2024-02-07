@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./../../../public/css/login/color.css";
 import "./../../../public/css/login/style.css";
 import "./../../../public/css/login/color-picker.css";
 import Signup from "./Signup";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Login = () => {
+  const { backgroundColor, textColor } = useContext(ThemeContext);
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false); // State to manage modal visibility
@@ -61,9 +63,10 @@ const Login = () => {
               className="fourth"
               value="Log In"
               onClick={handleLogin}
+              style={{ backgroundColor: backgroundColor }}
             />
           </form>
-          <div id="formFooter">
+          <div id="formFooter" style={{ backgroundColor: backgroundColor }}>
             <span style={{ color: "#fff", fontSize: "14px" }}>
               Don't have an account?{" "}
               <a

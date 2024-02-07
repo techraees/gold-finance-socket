@@ -13,7 +13,7 @@ import EconomicCalendar from "./components/Economic-calendar/EconomicCalendar";
 import Error404 from "./components/common/Error404";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import "/public/css/otr.css";
 import "/public/css/style.css";
