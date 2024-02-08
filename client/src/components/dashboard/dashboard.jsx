@@ -5,7 +5,7 @@ import "./dashboard.css";
 
 const Dashboard = () => {
   return (
-    <div className="flex justify-content-between ">
+    <div className="d-flex justify-content-between gap-5  ">
       <SideBar />
       <Outlet />
     </div>

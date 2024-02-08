@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import ColorChange from "../body/colorChanging/DashColorChanging.jsx";
-import Footer from "../../../common/Footer.jsx";
+
 // Import CSS styles
 
 const SideBar = () => {
