@@ -1,0 +1,29 @@
+Gold Website
+
+Pages
+	Home
+		https://bullion.safegold.in/index.html   --- Layout
+	About Us
+		Description
+	Live Rate 	
+		Home Page
+	Update
+		Empty
+	Bank Detail
+		Picture
+	Market Trends
+		Empty
+	Economic Calendar
+		Third Party
+	Contact Us
+		Email Functioanlit
+	Login Button Sign up
+
+
+Color Theme 
+
+
+Whatsapp Message +971551910372
+
+
+https://tradermade.com/docs/streaming-data-api

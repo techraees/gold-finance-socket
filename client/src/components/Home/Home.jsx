@@ -1,11 +1,51 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
 
 const Home = () => {
   const { backgroundColor, textColor } = useContext(ThemeContext);
+
+  const [socketData, setSocketData] = useState({ bid: null });
+  const [isBidIncreased, setIsBidIncreased] = useState(false);
+  useEffect(() => {
+    const ws = new WebSocket("wss://marketdata.tradermade.com/feedadv");
+    ws.onopen = () => {
+      console.log("WebSocket connection established.");
+      ws.send(
+        JSON.stringify({
+          userKey: "sioe_tRybWOO9pysqiUHw",
+          symbol: "XAUUSD",
+        })
+      );
+    };
+
+    ws.onmessage = (event) => {
+      if (event.data === "Connected") {
+        console.log("WebSocket connected successfully.");
+        return;
+      }
+
+      const newData = JSON.parse(event.data);
+      setIsBidIncreased(newData.bid > socketData.bid);
+      setSocketData(newData);
+    };
+    ws.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket connection closed.");
+    };
+    return () => {
+      ws.close();
+    };
+  }, [socketData.bid]);
+
+  console.log(isBidIncreased);
+
   return (
     <div>
+      {/* Your JSX code */}
       <div className="liverate-cover">
         <div className="liverate-title">
           <h4 style={{ color: backgroundColor }}>LIVE RATE</h4>
@@ -34,7 +74,17 @@ const Home = () => {
                     >
                       <div className="rate">
                         <div className="mainr" style={{ textAlign: "center" }}>
-                          <p className="bigfont e">2040.00</p>
+                          <p
+                            className="bigfont e"
+                            style={{
+                              background: `${isBidIncreased ? "green" : "red"}`,
+                              color: "white",
+                            }}
+                          >
+                            {" "}
+                            {socketData.bid &&
+                              parseFloat(socketData.bid.toFixed(2))}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -78,7 +128,7 @@ const Home = () => {
                     >
                       <div className="rate">
                         <div className="mainr" style={{ textAlign: "center" }}>
-                          <p className="bigfont e">22.69</p>
+                          <p className="bigfont e">{socketData.ask}</p>
                         </div>
                       </div>
                     </div>
@@ -122,7 +172,7 @@ const Home = () => {
                     >
                       <div className="rate">
                         <div className="mainr" style={{ textAlign: "center" }}>
-                          <p className="bigfont e">83.0290</p>
+                          <p className="bigfont e">{socketData.mid}</p>
                         </div>
                       </div>
                     </div>

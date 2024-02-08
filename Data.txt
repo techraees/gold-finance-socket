@@ -1,0 +1,218 @@
+import express from "express";
+import { Server } from "socket.io";
+import cors from "cors";
+import http from "http";
+import mongoose from "mongoose";
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
+// Middleware
+app.use(express.json());
+
+// app.use(cors());
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  })
+);
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import jewellerRoutes from "./Route/jeweller.js";
+import navbarRoutes from "./Route/navbar.js";
+import footerRoutes from "./Route/footer.js";
+import bankRoutes from "./Route/bank.js";
+import aboutRoutes from "./Route/about.js";
+import contactRoutes from "./Route/contact.js";
+import colorRoutes from "./Route/color.js";
+import marketRoutes from "./Route/market.js";
+
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// Database connection
+mongoose.connect(
+  "mongodb+srv://zafarzain544:zainzafar@cluster0.vzots6d.mongodb.net/",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+const db = mongoose.connection;
+db.on("error", (error) => console.error("MongoDB connection error:", error));
+db.once("open", () => console.log("MongoDB connected successfully"));
+
+// Routes
+import authRoutes from "./Route/jeweller.js";
+
+app.use("/api/auth", authRoutes);
+
+// Socket Connections
+io.on("connection", (socket) => {
+  console.log("User connected");
+
+  socket.on("trystart", async (updatedData) => {
+    console.log("sfsafafsafasfd");
+    console.log(updatedData);
+
+    // Broadcast updated data to all clients
+    socket.broadcast.emit("updatedData", updatedData);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+app.use("/api/auth", jewellerRoutes);
+app.use("/api/navbar", navbarRoutes);
+app.use("/api/footer", footerRoutes);
+app.use("/api/bank-details", bankRoutes);
+app.use("/api/about", aboutRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/color", colorRoutes);
+app.use("/api/market", marketRoutes);
+
+// Start the server
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import io from "socket.io-client";
+
+import Market from "./components/Market/Market";
+import Signup from "./components/LoginSignup/Signup";
+import Login from "./components/LoginSignup/Login";
+import Home from "./components/Home/Home";
+import Contact from "./components/Contact/Contact";
+import About from "./components/About/About";
+import Liverates from "./components/Liverates/Liverates";
+import Update from "./components/Update/Update";
+import BankDetail from "./components/BankDetail/BankDetail";
+import EconomicCalendar from "./components/Economic-calendar/EconomicCalendar";
+import Error404 from "./components/common/Error404";
+import Navbar from "./components/common/Navbar";
+import Footer from "./components/common/Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import "/public/css/otr.css";
+import "/public/css/style.css";
+import "/public/css/style(1).css";
+
+import "./App.css";
+
+var socket = io.connect("wss://marketdata.tradermade.com/feedadv", {
+  reconnect: true,
+});
+
+const App = () => {
+  const [routes, setRoutes] = useState([
+    { path: "/", element: <Home /> },
+    { path: "/login", element: <Login /> },
+    { path: "/signup", element: <Signup /> },
+    { path: "/market", element: <Market /> },
+    { path: "/contact", element: <Contact /> },
+    { path: "/about", element: <About /> },
+    { path: "/liverates", element: <Home /> },
+    { path: "/update", element: <Update /> },
+    { path: "/bank-detail", element: <BankDetail /> },
+    { path: "/economic-calendar", element: <EconomicCalendar /> },
+  ]);
+
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    // Create a new WebSocket instance
+    const ws = new WebSocket("wss://marketdata.tradermade.com/feedadv");
+
+    // Define event listeners for WebSocket events
+    ws.onopen = () => {
+      console.log("WebSocket connection established.");
+
+      // Send the initial message
+      ws.send(
+        JSON.stringify({
+          userKey: "sioe_tRybWOO9pysqiUHw",
+          symbol: "XAUUSD",
+        })
+      );
+    };
+
+    ws.onmessage = (event) => {
+      console.log("Received message:", JSON.parse(event.data));
+      setShow(JSON.parse(event.data));
+      // Handle incoming messages here
+    };
+
+    ws.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket connection closed.");
+    };
+
+    // Clean up function
+    return () => {
+      ws.close();
+    };
+  }, []); // Empty dependency array ensures useEffect runs only once
+
+  return (
+    <>
+      <Navbar />
+
+      <div className="container">
+        <table className="table" id="goldKaData">
+          <tr>
+            <th>Symbol</th>
+            <th>TS</th>
+            <th>BID</th>
+            <th>ASK</th>
+            <th>MID</th>
+          </tr>
+          <tr>
+            <td>{show.symbol}</td>
+            <td style={{ width: "300px" }}>{show.ts}</td>
+            <td>{show.bid}</td>
+            <td>{show.ask}</td>
+            <td>{show.mid}</td>
+          </tr>
+        </table>
+      </div>
+      <Routes>
+        {routes.map((item, index) => (
+          <Route path={item.path} key={index} element={item.element} />
+        ))}
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+
+      <Footer />
+    </>
+  );
+};
+
+export default App;
+
+
