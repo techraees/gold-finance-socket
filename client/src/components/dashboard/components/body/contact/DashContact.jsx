@@ -18,8 +18,8 @@ const Index = () => {
     try {
       const response = await axios.get(`${BASE_URL}/api/contact`);
       if (response.data.success && response.data.data.length > 0) {
-        setContactData(response.data.data[0]); // Access the first item in the array
-        setFormData(response.data.data[0]); // Set form data initially with contact data
+        setContactData(response.data.data[0]);
+        setFormData(response.data.data[0]);
       } else {
         console.error("No contact data found.");
       }
@@ -41,7 +41,7 @@ const Index = () => {
       );
       if (response.data.success) {
         console.log("Contact details updated successfully");
-        setContactData(response.data.data); // Update contactData state with the updated data
+        setContactData(response.data.data);
       } else {
         console.error("Failed to update contact details");
       }
@@ -51,53 +51,76 @@ const Index = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h4>CONTACT US</h4>
+    <div className="container mt-5" style={{ border: "none" }}>
+      <h4 className="mb-5" style={{ fontSize: "30px" }}>
+        CONTACT US PAGE EDIT
+      </h4>
       <div className="row">
-        <div className="col-md-4">
-          <div className="cnt-detail-cover">
-            <p>
-              <i className="fa fa-map"></i>
-              <strong>ADDRESS</strong>
-              <input
-                type="text"
-                className="form-control"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-              />
-            </p>
-            <p>
-              <i className="fa fa-mobile"></i>
-              <strong>NUMBER</strong>
-              <input
-                type="text"
-                className="form-control"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-            </p>
-            <p>
-              <i className="fa fa-envelope"></i>
-              <strong>E-MAIL</strong>
-              <input
-                type="text"
-                className="form-control"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </p>
-          </div>
-          <div id="contact-form" name="contact_form" action="" method="post">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleSubmit}
-            >
-              Update
-            </button>
+        <div className="col-md-12">
+          <div className="" style={{ background: "none" }}>
+            <div className="card-body">
+              <form style={{ width: "100%" }}>
+                <div className="form-group">
+                  <label
+                    htmlFor="address"
+                    style={{ fontSize: "20px" }}
+                    className="mt-2"
+                  >
+                    Address:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control mt-2"
+                    id="address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label
+                    htmlFor="phone"
+                    style={{ fontSize: "20px" }}
+                    className="mt-2"
+                  >
+                    Phone Number:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control mt-2"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label
+                    htmlFor="email"
+                    className="mt-2"
+                    style={{ fontSize: "20px" }}
+                  >
+                    Email:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control mt-2"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-primary mt-4"
+                  onClick={handleSubmit}
+                  style={{ fontSize: "20px" }}
+                >
+                  Update
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

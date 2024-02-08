@@ -59,47 +59,59 @@ const AboutAdmin = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">About Page Admin</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label">About Content</label>
-            <textarea
-              className="form-control"
-              value={aboutData.content}
-              onChange={handleChange}
-              name="content"
-              rows={10}
-              placeholder="Enter about content here..."
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Upload Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              className="form-control"
-              name="image"
-              onChange={handleImageChange}
-            />
-            {aboutData.image && (
-              <img
-                src={aboutData.image}
-                alt="Image Preview"
-                className="mt-2 img-thumbnail"
+    <section className="container mt-5">
+      <div className="">
+        <h2 className="mb-4" style={{ fontSize: "30px" }}>
+          About Edit Page
+        </h2>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label className="form-label" style={{ fontSize: "20px" }}>
+                About Content
+              </label>
+              <textarea
+                className="form-control mt-3"
+                value={aboutData.content}
+                onChange={handleChange}
+                name="content"
+                rows={10}
+                placeholder="Enter about content here..."
+                required
               />
-            )}
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Update About
-          </button>
-        </form>
-      )}
-    </div>
+            </div>
+            <div className="mb-3">
+              <label className="form-label" style={{ fontSize: "20px" }}>
+                Upload Image
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                className="form-control mt-3"
+                name="image"
+                onChange={handleImageChange}
+              />
+              {aboutData.image && (
+                <img
+                  src={aboutData.image}
+                  alt="Image Preview"
+                  className="mt-2 img-thumbnail mt-3"
+                />
+              )}
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary mt-3 mb-5"
+              style={{ fontSize: "20px" }}
+            >
+              Update About
+            </button>
+          </form>
+        )}
+      </div>
+    </section>
   );
 };
 

@@ -51,12 +51,12 @@ const ColorDashboard = ({ onUpdateColors }) => {
   console.log("onUpdateColors:", onUpdateColors);
 
   return (
-    <div className="container mt-3">
-      <h2>Color Dashboard</h2>
+    <div className="container mt-5">
+      <h2 style={{ fontSize: "30px" }}>COLOR CHANGE WEBSITE EDIT</h2>
       <div className="col">
-        <div className="row col-md-3 mt-3">
+        <div className="row col-md-5 mt-3">
           <div className="form-group">
-            <label>Background Color:</label>
+            <label style={{ fontSize: "20px" }}>Background Color:</label>
             <input
               type="color"
               className="form-control mt-2"
@@ -66,9 +66,9 @@ const ColorDashboard = ({ onUpdateColors }) => {
             />
           </div>
         </div>
-        <div className="row col-md-3 mt-3">
+        <div className="row col-md-5 mt-3">
           <div className="form-group">
-            <label>Text Color:</label>
+            <label style={{ fontSize: "20px" }}>Text Color:</label>
             <input
               type="color"
               className="form-control mt-2"
@@ -81,7 +81,11 @@ const ColorDashboard = ({ onUpdateColors }) => {
       </div>
       <div className="row mt-4">
         <div className="col-md-12">
-          <button className="btn btn-primary" onClick={handleUpdateColors}>
+          <button
+            className="btn btn-primary"
+            onClick={handleUpdateColors}
+            style={{ fontSize: "20px" }}
+          >
             Update Colors
           </button>
         </div>

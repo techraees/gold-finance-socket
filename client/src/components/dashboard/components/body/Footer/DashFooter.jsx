@@ -106,11 +106,15 @@ const Index = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">Update Footer</h2>
+    <div className="container mt-5">
+      <h2 className="mb-4" style={{ fontSize: "30px" }}>
+        FOOTER UPDATE PAGE
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">Logo Link</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Logo Link
+          </label>
           <input
             type="text"
             className="form-control"
@@ -120,7 +124,9 @@ const Index = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Logo Source</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Logo Source
+          </label>
           <input
             type="file"
             accept="image/*"
@@ -137,7 +143,9 @@ const Index = () => {
           )}
         </div>
         <div className="mb-3">
-          <label className="form-label">Description</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Description
+          </label>
           <textarea
             className="form-control"
             name="description"
@@ -146,7 +154,9 @@ const Index = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Social Media Links</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Social Media Links
+          </label>
           {footerData.socialMediaLinks.map((link, index) => (
             <div key={index} className="mb-3">
               <input
@@ -169,7 +179,9 @@ const Index = () => {
           ))}
         </div>
         <div className="mb-3">
-          <label className="form-label">Useful Links</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Useful Links
+          </label>
           {footerData.usefulLinks.map((link, index) => (
             <div key={index} className="mb-3">
               <input
@@ -192,7 +204,9 @@ const Index = () => {
           ))}
         </div>
         <div className="mb-3">
-          <label className="form-label">Services</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Services
+          </label>
           {footerData.services.map((service, index) => (
             <div key={index} className="mb-3">
               <input
@@ -215,7 +229,9 @@ const Index = () => {
           ))}
         </div>
         <div className="mb-3">
-          <label className="form-label">Contact Address</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Contact Address
+          </label>
           <input
             type="text"
             className="form-control"
@@ -229,7 +245,9 @@ const Index = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Contact Phone</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Contact Phone
+          </label>
           <input
             type="text"
             className="form-control"
@@ -241,7 +259,9 @@ const Index = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Contact Email</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Contact Email
+          </label>
           <input
             type="email"
             className="form-control"
@@ -253,7 +273,9 @@ const Index = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Copyright</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Copyright
+          </label>
           <input
             type="text"
             className="form-control"
@@ -262,7 +284,11 @@ const Index = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-primary mt-3"
+          style={{ fontSize: "20px" }}
+        >
           Update Footer
         </button>
       </form>

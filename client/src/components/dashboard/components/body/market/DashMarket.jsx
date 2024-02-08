@@ -46,14 +46,11 @@ const DashboardPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value); // Check if this prints the correct name and value
     setData((prevData) => ({
       ...prevData,
-      name: value,
+      [name]: value,
     }));
   };
-
-  console.log(data);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,21 +67,28 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center w-75">
+    <div className="container mt-5">
       <div className="d-flex flex-column">
-        <h2>Dashboard Page</h2>
+        <h2 className="mb-4" style={{ fontSize: "30px" }}>
+          MARKET TRENDZ PAGE EDIT
+        </h2>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Gold:</label>
+          <div className="mb-3">
+            <label className="form-label" style={{ fontSize: "20px" }}>
+              Gold:
+            </label>
             <input
               type="text"
+              className="form-control"
               name="gold"
-              value={data[0]?.gold || ""}
+              value={data?.gold || ""}
               onChange={handleChange}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Gold Img</label>
+            <label className="form-label" style={{ fontSize: "20px" }}>
+              Gold Img
+            </label>
             <input
               type="file"
               accept="image/*"
@@ -92,25 +96,30 @@ const DashboardPage = () => {
               name="goldImg"
               onChange={handleLogoGoldChange}
             />
-            {data[0]?.goldImg && (
+            {data?.goldImg && (
               <img
-                src={data[0].goldImg}
+                src={data.goldImg}
                 alt="Gold Preview"
                 className="mt-2 img-thumbnail"
               />
             )}
           </div>
-          <div>
-            <label>Silver:</label>
+          <div className="mb-3">
+            <label className="form-label" style={{ fontSize: "20px" }}>
+              Silver:
+            </label>
             <input
               type="text"
+              className="form-control"
               name="silver"
-              value={data[0]?.silver || ""}
+              value={data?.silver || ""}
               onChange={handleChange}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Silver Img</label>
+            <label className="form-label" style={{ fontSize: "20px" }}>
+              Silver Img
+            </label>
             <input
               type="file"
               accept="image/*"
@@ -118,15 +127,21 @@ const DashboardPage = () => {
               name="silverImg"
               onChange={handleLogoSilverChange}
             />
-            {data[0]?.silverImg && (
+            {data?.silverImg && (
               <img
-                src={data[0].silverImg}
+                src={data.silverImg}
                 alt="Silver Preview"
                 className="mt-2 img-thumbnail"
               />
             )}
           </div>
-          <button type="submit">Update Data</button>
+          <button
+            type="submit"
+            className="btn btn-primary mt-4"
+            style={{ fontSize: "20px", padding: "5px 10px" }}
+          >
+            Update Data
+          </button>
         </form>
       </div>
     </div>

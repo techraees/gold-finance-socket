@@ -48,13 +48,17 @@ const Index = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h4>BANK DETAILS</h4>
+    <div className="container mt-5">
+      <h4 style={{ fontSize: "30px" }}>BANK DETAILS EDIT</h4>
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-12">
           <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="bankName" className="form-label">
+            <div className="mb-3 mt-4">
+              <label
+                htmlFor="bankName"
+                className="form-label"
+                style={{ fontSize: "20px" }}
+              >
                 BANK NAME
               </label>
               <input
@@ -67,7 +71,11 @@ const Index = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="accountName" className="form-label">
+              <label
+                htmlFor="accountName"
+                className="form-label"
+                style={{ fontSize: "20px" }}
+              >
                 ACCOUNT NAME
               </label>
               <input
@@ -80,7 +88,11 @@ const Index = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="accountNumber" className="form-label">
+              <label
+                htmlFor="accountNumber"
+                className="form-label"
+                style={{ fontSize: "20px" }}
+              >
                 ACCOUNT NUMBER
               </label>
               <input
@@ -93,7 +105,11 @@ const Index = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="ifscCode" className="form-label">
+              <label
+                htmlFor="ifscCode"
+                className="form-label"
+                style={{ fontSize: "20px" }}
+              >
                 IFSC CODE
               </label>
               <input
@@ -106,7 +122,11 @@ const Index = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="branchName" className="form-label">
+              <label
+                htmlFor="branchName"
+                className="form-label"
+                style={{ fontSize: "20px" }}
+              >
                 BRANCH NAME
               </label>
               <input
@@ -118,7 +138,11 @@ const Index = () => {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              style={{ fontSize: "20px" }}
+            >
               Update
             </button>
           </form>

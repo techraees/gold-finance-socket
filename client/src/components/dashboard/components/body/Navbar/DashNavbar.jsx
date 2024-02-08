@@ -95,11 +95,13 @@ const Index = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Welcome to the Dashboard</h2>
+      <h2 style={{ fontSize: "30px" }}>NAVBAR EDIT PAGE</h2>
       <form onSubmit={handleSubmit}>
         <input type="hidden" name="id" value={formData.id} />
         <div className="mb-3">
-          <label className="form-label">Label</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Label
+          </label>
           <input
             type="text"
             className="form-control"
@@ -109,7 +111,9 @@ const Index = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Link</label>
+          <label className="form-label" style={{ fontSize: "20px" }}>
+            Link
+          </label>
           <input
             type="text"
             className="form-control"
@@ -118,13 +122,18 @@ const Index = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary me-2">
+        <button
+          type="submit"
+          className="btn btn-primary me-2"
+          style={{ fontSize: "20px" }}
+        >
           {selectedItemId ? "Update" : "Create"}
         </button>
         {selectedItemId && (
           <button
             type="button"
             className="btn btn-secondary"
+            style={{ fontSize: "20px" }}
             onClick={() => {
               setSelectedItemId(null);
               setFormData({ id: "", label: "", link: "" });
@@ -134,10 +143,14 @@ const Index = () => {
           </button>
         )}
       </form>
+      <h3 className="mt-3" style={{ fontSize: "20px" }}>
+        Navbar links
+      </h3>
       <ul className="list-group mt-4">
         {navItems.map((item, index) => (
           <li
             key={index}
+            style={{ fontSize: "20px" }}
             className="list-group-item d-flex justify-content-between align-items-center"
           >
             <Link to={item.link} className="nav-link">
@@ -147,12 +160,14 @@ const Index = () => {
               <button
                 className="btn btn-warning me-2"
                 onClick={() => handleUpdate(item)}
+                style={{ fontSize: "20px" }}
               >
                 Update
               </button>
               <button
                 className="btn btn-danger"
                 onClick={() => handleDelete(item._id)}
+                style={{ fontSize: "20px" }}
               >
                 Delete
               </button>
