@@ -26,6 +26,9 @@ db.on('error', (error) => console.error('MongoDB connection error:', error));
 db.once('open', () => console.log('MongoDB connected successfully'));
 
 // Routes
+app.get("/",(req,res)=>{
+  res.send("HELLO WORLd")
+})
 app.use('/api/auth', jewellerRoutes);
 app.use("/api/navbar", navbarRoutes);
 app.use("/api/footer", footerRoutes);
