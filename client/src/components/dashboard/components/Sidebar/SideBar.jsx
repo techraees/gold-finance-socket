@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ColorChange from "./../body/colorChanging/index.jsx";
+import FooterEdit from "./../body/Footer/index.jsx";
+import NavbarEdit from "./../body/Navbar/index.jsx";
+import ContactEdit from "./../body/contact/index.jsx";
+import AboutEdit from "./../body/about/index.jsx";
+import MarketTrendz from "./../body/market/index.jsx";
+import BankDetails from "./../body/bankDetail/index.jsx";
+
 // Import CSS styles
 
 const SideBar = () => {
@@ -139,7 +146,7 @@ const SideBar = () => {
                 <i className="bx bx-bar-chart-alt-2 nav_icon"></i>{" "}
                 <span className="nav_name">Color Change</span>{" "}
               </a>
-              <a
+              {/* <a
                 href="#"
                 className={`nav_link ${
                   activeLink === "Update" ? "active" : ""
@@ -149,7 +156,7 @@ const SideBar = () => {
                 {" "}
                 <i className="bx bx-bar-chart-alt-2 nav_icon"></i>{" "}
                 <span className="nav_name">Update</span>{" "}
-              </a>
+              </a> */}
             </div>
           </div>
           <a href="#" className="nav_link">
@@ -162,6 +169,12 @@ const SideBar = () => {
       {/* Container Main start */}
       <div className="bg-light" style={{ width: "100%" }}>
         {activeLink == "Color Change" && <ColorChange />}
+        {activeLink == "Footer Edit" && <FooterEdit />}
+        {activeLink == "Navbar Edit" && <NavbarEdit />}
+        {activeLink == "Contact Edit" && <ContactEdit />}
+        {activeLink == "About Edit" && <AboutEdit />}
+        {activeLink == "Market Trendz" && <MarketTrendz />}
+        {activeLink == "Bank Details" && <BankDetails />}
       </div>
 
       {/* Container Main end */}
