@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BASE_URL } from "config";
+import { BASE_URL } from "../../../../../config";
 
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BASE_URL } from "../../config";
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import data from "layouts/dashboard/components/Projects/data";
+import { BASE_URL } from "../../../../../config";
 
 const AboutAdmin = () => {
   const [loading, setLoading] = useState(true);
@@ -62,43 +60,47 @@ const AboutAdmin = () => {
   };
 
   return (
-    <DashboardLayout>
-      <div className="container mt-4">
-        <h2 className="mb-4">About Page Admin</h2>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label">About Content</label>
-              <textarea
-                className="form-control"
-                value={aboutData.content}
-                onChange={handleChange}
-                name="content"
-                rows={10}
-                placeholder="Enter about content here..."
-                required
+    <div className="container mt-4">
+      <h2 className="mb-4">About Page Admin</h2>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">About Content</label>
+            <textarea
+              className="form-control"
+              value={aboutData.content}
+              onChange={handleChange}
+              name="content"
+              rows={10}
+              placeholder="Enter about content here..."
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Upload Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              className="form-control"
+              name="image"
+              onChange={handleImageChange}
+            />
+            {aboutData.image && (
+              <img
+                src={aboutData.image}
+                alt="Image Preview"
+                className="mt-2 img-thumbnail"
               />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Upload Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                className="form-control"
-                name="image"
-                onChange={handleImageChange}
-              />
-              {aboutData.image && (
-                <img src={aboutData.image} alt="Image Preview" className="mt-2 img-thumbnail" />
-              )}
-            </div>
-            <button type="submit" className="btn btn-primary">Update About</button>
-          </form>
-        )}
-      </div>
-    </DashboardLayout>
+            )}
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Update About
+          </button>
+        </form>
+      )}
+    </div>
   );
 };
 

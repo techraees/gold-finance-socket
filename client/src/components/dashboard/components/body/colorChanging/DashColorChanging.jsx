@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { BASE_URL } from "./../../../../../config.js";
+import { BASE_URL } from "../../../../../config";
 
 const ColorDashboard = ({ onUpdateColors }) => {
   const [bgColor, setBgColor] = useState(""); // Initial background color

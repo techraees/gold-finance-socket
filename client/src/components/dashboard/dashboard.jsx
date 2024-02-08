@@ -1,9 +1,15 @@
 import React from "react";
 import SideBar from "./components/Sidebar/SideBar";
+import { Outlet } from "react-router-dom";
 import "./dashboard.css";
 
-const dashboard = () => {
-  return <SideBar />;
+const Dashboard = () => {
+  return (
+    <div className="flex justify-content-between ">
+      <SideBar />
+      <Outlet />
+    </div>
+  );
 };
 
-export default dashboard;
+export default Dashboard;
