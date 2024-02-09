@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "./../../config";
 import { ThemeContext } from "./../../context/ThemeContext.jsx"; // Change import to ThemeContext
+import Cookies from "js-cookie"; // Import Cookies library
 
 const Navbar = () => {
   const { backgroundColor, textColor } = useContext(ThemeContext);
   const [navItems, setNavItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user's login status
 
   useEffect(() => {
     // Fetch navbar data from backend
@@ -18,7 +20,19 @@ const Navbar = () => {
       .catch((error) => {
         console.error("Error fetching navbar data:", error);
       });
+
+    // Check if user is already logged in
+    const token = Cookies.get("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
   }, []);
+
+  const handleLogout = () => {
+    // Clear user authentication data and set login status to false
+    Cookies.remove("token");
+    setIsLoggedIn(false);
+  };
 
   return (
     <section>
@@ -50,14 +64,24 @@ const Navbar = () => {
           </div>
           <div className="col-sm-4 col-md-4 oneres">
             <div className="login-btn">
-              <Link
-                className="login-btn-cvr"
-                to="/login"
-                style={{ color: textColor, backgroundColor: backgroundColor }}
-              >
-                {" "}
-                Login / sign up
-              </Link>
+              {/* Render Login/Logout button based on isLoggedIn state */}
+              {isLoggedIn ? (
+                <button
+                  className="login-btn-cvr"
+                  onClick={handleLogout}
+                  style={{ color: textColor, backgroundColor: backgroundColor }}
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  className="login-btn-cvr"
+                  to="/login"
+                  style={{ color: textColor, backgroundColor: backgroundColor }}
+                >
+                  Login / Sign Up
+                </Link>
+              )}
             </div>
           </div>
         </div>

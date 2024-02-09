@@ -27,9 +27,17 @@ import "/public/css/otr.css";
 import "/public/css/style.css";
 import "/public/css/style(1).css";
 import Dashboard from "./components/dashboard/Dashboard";
+import Cookies from "js-cookie";
 
 const App = () => {
   const location = useLocation();
+
+  const [userRole, setUserRole] = useState("");
+
+  useEffect(() => {
+    const role = Cookies.get("role");
+    setUserRole(role);
+  }, []);
 
   const [routes, setRoutes] = useState([
     { path: "/", element: <Home /> },
@@ -54,17 +62,20 @@ const App = () => {
         {routes.map((item, index) => (
           <Route path={item.path} key={index} element={item.element} />
         ))}
-        <Route path="/admin" element={<Dashboard />}>
-          <Route path="/admin" element={<h1>hello</h1>} />
-          <Route path="/admin/footer" element={<DashFooter />} />
-          <Route path="/admin/navbar" element={<DashNavbar />} />
-          <Route path="/admin/about" element={<DashAbout />} />
-          <Route path="/admin/contact" element={<DashContact />} />
-          <Route path="/admin/market" element={<DashMarket />} />
-          <Route path="/admin/bank" element={<DashBackDetails />} />
-          <Route path="/admin/color" element={<DashColorChanging />} />
-          <Route path="/admin/update" element={<h1>Helo World</h1>} />
-        </Route>
+        {userRole === "admin" && (
+          <Route path="/admin" element={<Dashboard />}>
+            <Route path="/admin" element={<h1>hello</h1>} />
+            <Route path="/admin/footer" element={<DashFooter />} />
+            <Route path="/admin/navbar" element={<DashNavbar />} />
+            <Route path="/admin/about" element={<DashAbout />} />
+            <Route path="/admin/contact" element={<DashContact />} />
+            <Route path="/admin/market" element={<DashMarket />} />
+            <Route path="/admin/bank" element={<DashBackDetails />} />
+            <Route path="/admin/color" element={<DashColorChanging />} />
+            <Route path="/admin/update" element={<h1>Helo World</h1>} />
+            <Route path="*" element={<Error404 />} />
+          </Route>
+        )}
         <Route path="*" element={<Error404 />} />
       </Routes>
       {location.pathname !== "/admin" &&

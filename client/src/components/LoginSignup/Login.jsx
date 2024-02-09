@@ -4,25 +4,48 @@ import "./../../../public/css/login/style.css";
 import "./../../../public/css/login/color-picker.css";
 import Signup from "./Signup";
 import { ThemeContext } from "../../context/ThemeContext";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { backgroundColor, textColor } = useContext(ThemeContext);
-  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false); // State to manage modal visibility
+  const navigate = useNavigate();
 
   const handleLoginChange = (event) => {
-    setLogin(event.target.value);
+    setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log("Login: ", login);
-    console.log("Password: ", password);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/users/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
+      console.log(response.data);
+
+      if (response.data.success) {
+        const { token, user } = response.data;
+        Cookies.set("token", token);
+        Cookies.set("role", user.role); // Set role in cookie
+        // Dispatch action for successful login if needed
+        console.log(user.role);
+      }
+      navigate("/");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   const openModal = () => {
@@ -41,14 +64,15 @@ const Login = () => {
             <img src="/logo.svg" id="icon" alt="User Icon" />
           </div>
 
-          <form>
+          <form onSubmit={handleLogin}>
             <input
               type="text"
               className="fadeIn second"
-              name="login"
+              name="email"
               placeholder="login"
-              value={login}
+              value={email}
               onChange={handleLoginChange}
+              required
             />
             <input
               type="password"
@@ -57,12 +81,12 @@ const Login = () => {
               placeholder="password"
               value={password}
               onChange={handlePasswordChange}
+              required
             />
             <input
-              type="button"
+              type="submit"
               className="fourth"
               value="Log In"
-              onClick={handleLogin}
               style={{ backgroundColor: backgroundColor }}
             />
           </form>

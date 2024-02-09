@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import jewellerRoutes from "./Route/jeweller.js";
 import navbarRoutes from "./Route/navbar.js";
 import footerRoutes from "./Route/footer.js";
 import bankRoutes from "./Route/bank.js";
@@ -9,6 +8,7 @@ import aboutRoutes from "./Route/about.js";
 import contactRoutes from "./Route/contact.js";
 import colorRoutes from "./Route/color.js";
 import marketRoutes from "./Route/market.js";
+import userRoutes from './Route/user.js';
 
 const app = express();
 
@@ -18,11 +18,7 @@ app.use(cors());
 
 // Database connection
 mongoose.connect(
-  "mongodb+srv://zafarzain544:zainzafar@cluster0.vzots6d.mongodb.net/",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
+  "mongodb+srv://zafarzain544:zainzafar@cluster0.vzots6d.mongodb.net/"
 );
 const db = mongoose.connection;
 db.on("error", (error) => console.error("MongoDB connection error:", error));
@@ -32,7 +28,7 @@ db.once("open", () => console.log("MongoDB connected successfully"));
 app.get("/", (req, res) => {
   res.send("HELLO WORLd");
 });
-app.use("/api/auth", jewellerRoutes);
+app.use('/api/users', userRoutes);
 app.use("/api/navbar", navbarRoutes);
 app.use("/api/footer", footerRoutes);
 app.use("/api/bank-details", bankRoutes);
@@ -40,6 +36,24 @@ app.use("/api/about", aboutRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/color", colorRoutes);
 app.use("/api/market", marketRoutes);
+
+app.get('/admin', (req, res) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({ message: 'Access denied. No token provided.' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, 'secret');
+    if (decoded.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied. Not an admin.' });
+    }
+    res.json({ message: 'Welcome to admin panel' });
+  } catch (error) {
+    res.status(400).json({ message: 'Invalid token' });
+  }
+});
 
 // Start the server
 const PORT = 3000;

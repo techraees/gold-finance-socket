@@ -11,14 +11,8 @@ const Signup = ({ closeModal }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phoneNumber: "",
-    companyName: "",
-    companyType: "",
-    billingAddress: "",
-    city: "",
-    state: "",
-    pincode: "",
-    gst: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -26,32 +20,32 @@ const Signup = ({ closeModal }) => {
     setFormData({ ...formData, [id]: value });
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData({ ...formData, gstDocument: file });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formDataToSend = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        formDataToSend.append(key, value);
-      });
       const response = await axios.post(
-        "http://localhost:3000/api/auth/signup",
-        formDataToSend
+        "http://localhost:3000/api/users/register",
+        formData,
+        {
+          body: JSON.stringify(formData),
+        }
       );
+
       console.log(response.data);
-      // Handle success
+      closeModal();
     } catch (error) {
       console.error("Error submitting form:", error);
-      // Handle error
+      // Handle error, maybe show an error message to the user
     }
   };
 
   return (
-    <Modal show onHide={closeModal} className="custom-modal-sm">
+    <Modal
+      show
+      onHide={closeModal}
+      dialogClassName="modal-dialog-scrollable"
+      className="custom-modal-sm"
+    >
       <Modal.Header style={{ backgroundColor: backgroundColor }}>
         <div className="d-flex" style={{ width: "100%" }}>
           <Modal.Title
@@ -104,125 +98,22 @@ const Signup = ({ closeModal }) => {
                   onChange={handleChange}
                 />
                 <input
-                  type="text"
-                  id="phoneNumber"
+                  type="password"
+                  id="password"
                   className=" third"
-                  placeholder="CONTACT NUMBER"
-                  value={formData.phoneNumber}
+                  placeholder="PASSWORD"
+                  value={formData.password}
                   onChange={handleChange}
                 />
                 <input
-                  type="text"
-                  id="companyName"
+                  type="password"
+                  id="confirmPassword"
                   className=" third"
-                  placeholder="COMPANY NAME"
-                  value={formData.companyName}
+                  placeholder="CONFIRM PASSWORD"
+                  value={formData.confirmPassword}
                   onChange={handleChange}
                 />
-                <select
-                  className="common-select custom-select"
-                  id="companyType"
-                  style={{
-                    border: "1px solid #e0e0e0",
-                    width: "85%",
-                    padding: "7px 32px",
-                    fontSize: "15px",
-                    textAlign: "center",
-                    margin: "5px",
-                    borderRadius: "5px",
-                    backgroundColor: "#e4f7f6",
-                    height: "35px", // Adjust the height here
-                  }}
-                  value={formData.companyType}
-                  onChange={handleChange}
-                >
-                  <option>COMPANY TYPE</option>
-                  <option value="Proprietorship">Proprietorship</option>
-                  <option value="Partnership / LLC">Partnership / LLC</option>
-                  <option value="HUF">HUF</option>
-                  <option value="Public / Private company">
-                    Public / Private company
-                  </option>
-                </select>
-                <input
-                  type="text"
-                  id="billingAddress"
-                  className=" third"
-                  placeholder="BILLING ADDRESS"
-                  value={formData.billingAddress}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  id="city"
-                  className=" third"
-                  placeholder="CITY"
-                  value={formData.city}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  id="state"
-                  className=" third"
-                  placeholder="STATE"
-                  value={formData.state}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  id="pincode"
-                  className=" third"
-                  placeholder="PINCODE"
-                  value={formData.pincode}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  id="gst"
-                  className=" third"
-                  placeholder="GST"
-                  value={formData.gst}
-                  onChange={handleChange}
-                />
-                <div className="new-file">
-                  <label htmlFor="file">Upload GST Document</label>
-                  <input
-                    type="file"
-                    id="gstDocument"
-                    name="gstDocument"
-                    style={
-                      {
-                        /* your styles */
-                      }
-                    }
-                    onChange={handleFileChange}
-                  />
-                </div>
-                <p
-                  style={
-                    {
-                      /* your styles */
-                    }
-                  }
-                >
-                  By signing up, I hereby accept the terms and conditions
-                  mentioned in the{" "}
-                  <a
-                    href="https://safegoldstatic.s3.ap-south-1.amazonaws.com/Bullion-Platform-EULA.pdf"
-                    target="_blank"
-                    className="agreement"
-                  >
-                    <span
-                      style={
-                        {
-                          /* your styles */
-                        }
-                      }
-                    >
-                      Bullion Agreement Document
-                    </span>
-                  </a>
-                </p>
+
                 <input
                   type="submit"
                   className="fourth"
