@@ -44,8 +44,8 @@ const Navbar = () => {
           Your marquee content here
         </marquee>
       </div>
-      <div className="menu-cover menu-first">
-        <div className="container">
+      <div className="menu-cover menu-first  shadow-sm">
+        <div className="container"> 
           <div className="col-sm-4 col-md-4 res">
             <Link to="/" className="navbar-brand">
               <img src="/logo.svg" alt="" />
@@ -57,7 +57,7 @@ const Navbar = () => {
                 <i className="fa fa-phone"></i>BOOKING NUMBER
               </h2>
               <div className="bk-text">
-                <span className="bookingno1">+91 84484 40373</span> |
+                <span className="bookingno1 " style={{color:"#cd9d1ea1"}}>+91 84484 40373</span> 
                 <span className="bookingno2"></span>
               </div>
             </div>

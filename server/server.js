@@ -8,8 +8,9 @@ import aboutRoutes from "./Route/about.js";
 import contactRoutes from "./Route/contact.js";
 import colorRoutes from "./Route/color.js";
 import marketRoutes from "./Route/market.js";
-import userRoutes from './Route/user.js';
-
+import userRoutes from "./Route/user.js";
+import WebSocket from "ws";
+const ws = new WebSocket("wss://marketdata.tradermade.com/feedadv");
 const app = express();
 
 // Middleware
@@ -28,7 +29,7 @@ db.once("open", () => console.log("MongoDB connected successfully"));
 app.get("/", (req, res) => {
   res.send("HELLO WORLd");
 });
-app.use('/api/users', userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/navbar", navbarRoutes);
 app.use("/api/footer", footerRoutes);
 app.use("/api/bank-details", bankRoutes);
@@ -37,21 +38,34 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/color", colorRoutes);
 app.use("/api/market", marketRoutes);
 
-app.get('/admin', (req, res) => {
+app.get("/admin", (req, res) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).json({ message: 'Access denied. No token provided.' });
+    return res
+      .status(401)
+      .json({ message: "Access denied. No token provided." });
   }
 
   try {
-    const decoded = jwt.verify(token, 'secret');
-    if (decoded.role !== 'admin') {
-      return res.status(403).json({ message: 'Access denied. Not an admin.' });
+    const decoded = jwt.verify(token, "secret");
+    if (decoded.role !== "admin") {
+      return res.status(403).json({ message: "Access denied. Not an admin." });
     }
-    res.json({ message: 'Welcome to admin panel' });
+    res.json({ message: "Welcome to admin panel" });
   } catch (error) {
-    res.status(400).json({ message: 'Invalid token' });
+    res.status(400).json({ message: "Invalid token" });
+  }
+});
+
+ws.on("open", function open() {
+  ws.send('{"userKey":"wsNt-jEzxjWPNcJWMzeA", "symbol":"XAUUSD"}');
+});
+ws.on("message", function incoming(data) {
+  console.log("Data %s ",data)
+  if (data != "Connected") {
+    data = JSON.parse(data);
+    console.log(data);
   }
 });
 

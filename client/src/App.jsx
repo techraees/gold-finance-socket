@@ -78,6 +78,7 @@ const App = () => {
         )}
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <Footer />
       {location.pathname !== "/admin" &&
         !location.pathname.startsWith("/admin/") && <Footer />}
     </>

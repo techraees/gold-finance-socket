@@ -6,7 +6,7 @@ import Signup from "./Signup";
 import { ThemeContext } from "../../context/ThemeContext";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { backgroundColor, textColor } = useContext(ThemeContext);
@@ -58,7 +58,10 @@ const Login = () => {
 
   return (
     <div className="login-cover">
-      <div className="wrapper fadeInDown">
+      <div
+        className="wrapper fadeInDown"
+        style={{ padding: "0", minHeight: "75vh" }}
+      >
         <div id="formContent">
           <div className="fadeIn first">
             <img src="/logo.svg" id="icon" alt="User Icon" />
@@ -69,7 +72,7 @@ const Login = () => {
               type="text"
               className="fadeIn second"
               name="email"
-              placeholder="login"
+              placeholder="Enter your Email"
               value={email}
               onChange={handleLoginChange}
               required
@@ -78,7 +81,7 @@ const Login = () => {
               type="password"
               className="fadeIn third"
               name="password"
-              placeholder="password"
+              placeholder="Enter your Password"
               value={password}
               onChange={handlePasswordChange}
               required
@@ -93,17 +96,15 @@ const Login = () => {
           <div id="formFooter" style={{ backgroundColor: backgroundColor }}>
             <span style={{ color: "#fff", fontSize: "14px" }}>
               Don't have an account?{" "}
-              <a
+              <Link
                 className="underlineHover"
-                href="#"
-                onClick={openModal}
+                to="/signup"
                 style={{ fontSize: "14px" }}
               >
                 Register Here
-              </a>
+              </Link>
             </span>
           </div>
-          {showModal && <Signup closeModal={closeModal} />}
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ const Home = () => {
       console.log("WebSocket connection established.");
       ws.send(
         JSON.stringify({
-          userKey: "sioe_tRybWOO9pysqiUHw",
+          userKey: "wsNt-jEzxjWPNcJWMzeA",
           symbol: "XAUUSD",
         })
       );
@@ -22,10 +22,11 @@ const Home = () => {
     ws.onmessage = (event) => {
       if (event.data === "Connected") {
         console.log("WebSocket connected successfully.");
-        return;
+        return
       }
 
       const newData = JSON.parse(event.data);
+      console.log(newData,"HELLO WORLD")
       setIsBidIncreased(newData.bid > socketData.bid);
       setSocketData(newData);
     };
@@ -82,8 +83,8 @@ const Home = () => {
                             }}
                           >
                             {" "}
-                            {socketData.bid &&
-                              parseFloat(socketData.bid.toFixed(2))}
+                            {socketData.bid ?
+                              parseFloat(socketData.bid.toFixed(2)):"24.00"}
                           </p>
                         </div>
                       </div>
@@ -128,7 +129,7 @@ const Home = () => {
                     >
                       <div className="rate">
                         <div className="mainr" style={{ textAlign: "center" }}>
-                          <p className="bigfont e">{socketData.ask}</p>
+                          <p className="bigfont e">{socketData.ask ? socketData.ask :"154.00"}</p>
                         </div>
                       </div>
                     </div>
@@ -172,7 +173,7 @@ const Home = () => {
                     >
                       <div className="rate">
                         <div className="mainr" style={{ textAlign: "center" }}>
-                          <p className="bigfont e">{socketData.mid}</p>
+                          <p className="bigfont e">{socketData.mid  ?socketData.mid :"123.00"}</p>
                         </div>
                       </div>
                     </div>
